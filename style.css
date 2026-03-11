@@ -1,0 +1,171 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0b0c0e;
+    --surface: #111316;
+    --border: #1f2428;
+    --text: #e6edf3;
+    --muted: #9aa0a6;
+    --accent: #2a6ef5;
+    --font: "Google Sans Flex", Arial, system-ui;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 760px;
+    height: calc(100vh - 48px);
+    margin: 0 auto;
+    background: var(--surface);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.viewport {
+    padding: 18px;
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.sys {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.msg {
+    font-size: 14px;
+    margin-bottom: 0;
+    word-break: break-word;
+    display: flex;
+    gap: 3pt;
+    align-items: flex-start;
+}
+.msg > span:first-child {
+    color: var(--muted);
+    white-space: nowrap;
+}
+.msg > span:nth-of-type(2) {
+    font-size: 14px;
+    flex: 1;
+}
+
+.composer {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid var(--border);
+    align-items: center;
+}
+.composer input[type="text"] {
+    flex: 1;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: transparent;
+    font-size: 14px;
+    color: var(--text);
+    border: 2px solid var(--text);
+}
+.composer input::placeholder {
+    color: var(--muted);
+}
+.composer button {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 0;
+    background: var(--accent);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+dialog {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    padding: 18px;
+    border-radius: 10px;
+    max-width: 420px;
+    width: 92%;
+}
+dialog::backdrop {
+    background: #0005;
+}
+
+dialog h3:nth-of-type(1) {
+    text-align: center;
+}
+dialog div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+dialog div label {
+    font-size: 13px;
+    color: var(--muted);
+}
+dialog div input[type="url"], dialog div input[type="text"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-size: 14px;
+}
+dialog section:has(button) {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+button {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+}
+
+button.primary {
+    background: var(--accent);
+    color: #fff;
+}
+
+small {
+    color: var(--muted);
+    font-weight: normal;
+}
