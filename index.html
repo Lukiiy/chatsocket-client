@@ -25,12 +25,12 @@
         <form method="dialog" id="connectForm">
             <h3>Connect</h3>
 
-            <div class="row">
-                <label for="server">WebSocket Server</label>
-                <input id="server" name="server" type="url" placeholder="ws://host:port" required />
+            <div>
+                <label for="server">WebSocket server</label>
+                <input id="server" name="server" type="text" pattern="^(?:\w+://)?[^:/\s]+(?::\d+)?$" placeholder="ws://host:port" required />
             </div>
 
-            <div class="row">
+            <div>
                 <label for="name">Username</label>
                 <input id="name" name="name" type="text" maxlength="24" required />
                 <small>Names are case-insensitive and must be unique.</small>
