@@ -33,7 +33,7 @@
 
             <div>
                 <label for="name">Username</label>
-                <input id="name" name="name" type="text" pattern="/^[A-Za-z0-9_]{3,24}$/" minlength="3" maxlength="24" required />
+                <input id="name" name="name" type="text" minlength="3" maxlength="24" required />
                 <small>Names are case-insensitive and must be unique.</small>
             </div>
 
@@ -42,5 +42,7 @@
             </section>
         </form>
     </dialog>
+
+    <script src="app.js" defer></script>
 </body>
 </html>
