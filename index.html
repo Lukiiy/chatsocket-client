@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>🗩 ChatSocket</title>
     <meta name="description" content="some simple chat client idk">
     <link rel="author" href="Lukiiy">
@@ -32,7 +33,7 @@
 
             <div>
                 <label for="name">Username</label>
-                <input id="name" name="name" type="text" maxlength="24" required />
+                <input id="name" name="name" type="text" pattern="/^[A-Za-z0-9_]{3,24}$/" minlength="3" maxlength="24" required />
                 <small>Names are case-insensitive and must be unique.</small>
             </div>
 
