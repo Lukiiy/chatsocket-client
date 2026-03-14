@@ -156,6 +156,12 @@ function connect(url) {
         appendSys("Disconnected.");
 
         registered = false;
+
+        setTimeout(() => {
+            try {
+                dialog.showModal();
+            } catch {}
+        }, 150);
     });
 
     ws.addEventListener("error", () => appendSys("Connection error."));
