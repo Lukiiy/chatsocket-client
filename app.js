@@ -2,6 +2,8 @@ const dialog = document.getElementById("connectMenu");
 const serverInput = document.getElementById("server");
 const nameInput = document.getElementById("name");
 
+const EXTRA_PATTERN = /^[A-Za-z0-9_-]{3,24}$/;
+
 const msgBoard = document.getElementById("msgBoard");
 const msgInput = document.getElementById("message");
 
@@ -73,12 +75,24 @@ function connect(url) {
         ws.close();
     } catch { }
 
-    url = url.trim();
-    if (!/^wss?:\/\//i.test(url)) url = "ws://" + url;
+    let deUrl = String(url || "").trim();
+
+    if (!/^[a-z]+:\/\//i.test(deUrl)) deUrl = "ws://" + deUrl;
+    deUrl = deUrl.replace(/^https:\/\//i, "wss://").replace(/^http:\/\//i, "ws://");
+
+    const match = deUrl.match(/^([a-z]+:\/\/)([A-Za-z0-9_-])@(.+)$/i);
+    const extra = match ? match[2] : null;
+
+    if (extra && !EXTRA_PATTERN.test(extra)) {
+        appendSys("Couldn't parse extra info.");
+        return;
+    }
+
+    if (match) deUrl = match[1] + match[3]; // rebuild url without extra info
 
     let parsed;
     try {
-        parsed = new URL(url);
+        parsed = new URL(deUrl);
     } catch {
         appendSys("Bad Websocket URL.");
         return;
@@ -101,7 +115,8 @@ function connect(url) {
     ws.addEventListener("open", () => {
         ws.send(JSON.stringify({
             type: "register",
-            name: pendingName
+            name: pendingName,
+            extra: extra
         }));
     });
 

@@ -28,7 +28,7 @@
 
             <div>
                 <label for="server">WebSocket server</label>
-                <input id="server" name="server" type="text" pattern="^(?:\w+://)?[^:/\s]+(?::\d+)?$" placeholder="ws://host:port" required />
+                <input id="server" name="server" type="text" pattern="^(?:\w+://)?(?:[A-Za-z0-9_-]{3,24}@)?[A-Za-z0-9.-]+(?::\d+)?$" placeholder="ws://password@host:port" required />
             </div>
 
             <div>
