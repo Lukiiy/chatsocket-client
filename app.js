@@ -80,16 +80,6 @@ function connect(url) {
     if (!/^[a-z]+:\/\//i.test(deUrl)) deUrl = "ws://" + deUrl;
     deUrl = deUrl.replace(/^https:\/\//i, "wss://").replace(/^http:\/\//i, "ws://");
 
-    const match = deUrl.match(/^([a-z]+:\/\/)([A-Za-z0-9_-])@(.+)$/i);
-    const extra = match ? match[2] : null;
-
-    if (extra && !EXTRA_PATTERN.test(extra)) {
-        appendSys("Couldn't parse extra info.");
-        return;
-    }
-
-    if (match) deUrl = match[1] + match[3]; // rebuild url without extra info
-
     let parsed;
     try {
         parsed = new URL(deUrl);
@@ -102,6 +92,10 @@ function connect(url) {
         appendSys("Port required (example: ws://localhost:2579)");
         return;
     }
+
+    const extra = parsed.username ? decodeURIComponent(parsed.username) : null;
+    parsed.username = "";
+    parsed.password = "";
 
     appendSys("Connecting...");
 
@@ -116,7 +110,7 @@ function connect(url) {
         ws.send(JSON.stringify({
             type: "register",
             name: pendingName,
-            extra: extra
+            extra
         }));
     });
 
